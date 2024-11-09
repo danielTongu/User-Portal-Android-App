@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    AndroidManifest.xml is the central configuration file for an Android app.
+    It declares app permissions, activities, services, and other components.
+-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    
+
+    <!-- Permission to access the Internet -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -15,26 +20,27 @@
         android:theme="@style/Theme.ChatAndroidApp"
         tools:targetApi="31">
 
+        <!-- Declaration of SignUpActivity -->
         <activity
             android:name=".activities.SignUpActivity"
             android:exported="false" />
 
+        <!-- Declaration of SignInActivity as the main launcher activity -->
         <activity
             android:name=".activities.SignInActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- Declaration of MainActivity -->
         <activity
             android:name=".activities.MainActivity"
             android:exported="false"/>
 
-
-        <!-- Copied from tools > Firebase > Cloud Messaging > Cloud Messaging... -->
+        <!-- Declaration of Firebase Cloud Messaging Service -->
         <service
             android:name=".firebase.MessagingService"
             android:exported="false">

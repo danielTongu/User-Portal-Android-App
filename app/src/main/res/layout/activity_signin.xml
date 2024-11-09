@@ -29,7 +29,7 @@
             android:layout_marginTop="60dp"
             android:text="Welcome Back"
             android:textColor="@color/primary"
-            android:textSize="24sp"
+            android:textSize="33sp"
             android:textStyle="bold"/>
 
         <!-- TextView prompting the user to log in -->
@@ -39,7 +39,7 @@
             android:layout_marginTop="6dp"
             android:text="Login To Continue"
             android:textColor="@color/primary"
-            android:textSize="17sp"
+            android:textSize="20sp"
             android:textStyle="bold"/>
 
         <!-- Input field for the user's email -->
@@ -56,7 +56,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:textColor="@color/primary_text"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <!-- Input field for the user's password -->
         <EditText
@@ -73,7 +73,7 @@
             android:paddingEnd="16dp"
             android:textAlignment="gravity"
             android:textColor="@color/primary_text"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <!-- FrameLayout containing the Sign In button and ProgressBar -->
         <FrameLayout
@@ -87,7 +87,6 @@
                 android:id="@+id/buttonSignIn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="68dp"
                 android:text="Sign In"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -111,7 +110,7 @@
             android:layout_marginTop="40dp"
             android:text="Create New Account"
             android:textColor="@color/primary"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"/>
     </LinearLayout>
 

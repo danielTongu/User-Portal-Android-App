@@ -96,16 +96,15 @@ public class SignUpActivity extends AppCompatActivity {
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful() && task.getResult() != null && !task.getResult().isEmpty()) {
-                        showLoadingIndicator(false);
                         Utilities.showToast(this, "Email already in use. Please use a different email.", ToastType.WARNING);
                     } else {
                         addUserToDatabase();
                     }
                 })
                 .addOnFailureListener(exception -> {
-                    showLoadingIndicator(false);
                     Utilities.showToast(this, exception.getMessage(), ToastType.DANGER);
                 });
+        showLoadingIndicator(false);
     }
 
     /**
@@ -126,8 +125,7 @@ public class SignUpActivity extends AppCompatActivity {
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
-                    Utilities.showToast(this, "Registration successful", ToastType.INFO);
-                    showLoadingIndicator(false);
+                    Utilities.showToast(this, "Registration successful", ToastType.SUCCESS);
 
                     // Save user info in preferences
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
@@ -142,9 +140,9 @@ public class SignUpActivity extends AppCompatActivity {
                     startActivity(intent);
                 })
                 .addOnFailureListener(exception -> {
-                    showLoadingIndicator(false);
                     Utilities.showToast(this, exception.getMessage(), ToastType.DANGER);
                 });
+        showLoadingIndicator(false);
     }
 
     /**
@@ -171,8 +169,8 @@ public class SignUpActivity extends AppCompatActivity {
                         encodedImage = Utilities.encodeImage(bitmap);
 
                     } catch (FileNotFoundException e) {
-                        e.printStackTrace();
                         Utilities.showToast(this, "Image not found", ToastType.DANGER);
+                        e.printStackTrace();
                     }
                 }
             }

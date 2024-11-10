@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     This XML layout defines the user interface for the SignInActivity.
     It includes input fields for email and password, a sign-in button, and an option to create a new account.
 -->
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -20,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <!-- TextView for "Welcome Back" greeting -->
         <TextView
@@ -30,7 +28,7 @@
             android:text="Welcome Back"
             android:textColor="@color/primary"
             android:textSize="33sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <!-- TextView prompting the user to log in -->
         <TextView
@@ -40,7 +38,7 @@
             android:text="Login To Continue"
             android:textColor="@color/primary"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <!-- Input field for the user's email -->
         <EditText
@@ -80,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:animateLayoutChanges="true" >
+            android:animateLayoutChanges="true">
 
             <!-- MaterialButton for signing in -->
             <com.google.android.material.button.MaterialButton
@@ -111,7 +109,7 @@
             android:text="Create New Account"
             android:textColor="@color/primary"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
 </ScrollView>

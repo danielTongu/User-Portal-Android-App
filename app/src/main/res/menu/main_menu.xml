@@ -1,0 +1,11 @@
+<!-- res/menu/main_menu.xml -->
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_sign_out"
+        android:title="Sign Out"
+        android:icon="@drawable/ic_logout"
+        android:orderInCategory="100"
+        app:actionLayout="@layout/activity_signout"
+        app:showAsAction="ifRoom" />
+</menu>

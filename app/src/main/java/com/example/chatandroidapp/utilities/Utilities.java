@@ -1,44 +1,23 @@
 package com.example.chatandroidapp.utilities;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import com.example.chatandroidapp.R;
 
 /**
  * Utilities class for common utility functions used across the application.
- *
- * @author Daniel Tongu
  */
 public class Utilities {
-
-    /**
-     * Displays a Toast message with the specified type.
-     *
-     * @param context The context to use.
-     * @param message The message to display.
-     * @param type    The type of the message: INFO, WARNING, DANGER, or DEFAULT.
-     */
-    public static void showToast(Context context, String message, ToastType type) {
-        switch (type != null ? type : ToastType.DEFAULT) {
-            case INFO:
-                displayCustomToast(context, message, R.layout.custom_toast_info);
-                break;
-            case WARNING:
-                displayCustomToast(context, message, R.layout.custom_toast_warning);
-                break;
-            case DANGER:
-                displayCustomToast(context, message, R.layout.custom_toast_danger);
-                break;
-            default:
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-                break;
-        }
-    }
 
     /**
      * Overloaded method to display a Toast message with default type.
@@ -50,12 +29,65 @@ public class Utilities {
         showToast(context, message, ToastType.DEFAULT);
     }
 
-    private static void displayCustomToast(Context context, String message, int layoutId) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View layout = inflater.inflate(layoutId, null);
+    /**
+     * Displays a Toast message with the specified type.
+     *
+     * @param context The context to use.
+     * @param message The message to display.
+     * @param type    The type of the message: INFO, WARNING, DANGER, SUCCESS, or DEFAULT.
+     */
+    public static void showToast(Context context, String message, ToastType type) {
+        if (type == null ) {
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        displayCustomToast(context, message, type);
+    }
 
-        TextView text = layout.findViewById(R.id.text);
-        text.setText(message);
+    private static void displayCustomToast(Context context, String message, ToastType type) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View layout = inflater.inflate(R.layout.toast_custom, null);
+
+        LinearLayout toastRoot = layout.findViewById(R.id.toast_layout_root);
+        ImageView imageView = layout.findViewById(R.id.image);
+        TextView textView = layout.findViewById(R.id.text);
+        textView.setText(message);
+
+        int backgroundDrawableId;
+        int iconResId;
+        int textColor = ContextCompat.getColor(context, R.color.white);
+
+        switch (type) {
+            case INFO:
+                backgroundDrawableId = R.drawable.background_toast_info;
+                iconResId = R.drawable.ic_info;
+                break;
+            case WARNING:
+                textColor = ContextCompat.getColor(context, R.color.black);
+                backgroundDrawableId = R.drawable.background_toast_warning;
+                iconResId = R.drawable.ic_warning;
+                break;
+            case DANGER:
+                backgroundDrawableId = R.drawable.background_toast_error;
+                iconResId = R.drawable.ic_error;
+                break;
+            case SUCCESS:
+                backgroundDrawableId = R.drawable.background_toast_success;
+                iconResId = R.drawable.ic_success;
+                break;
+            default:
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                return;
+        }
+
+        // Set the background drawable
+        toastRoot.setBackgroundResource(backgroundDrawableId);
+        // Set the icon
+        imageView.setImageResource(iconResId);
+        // Set the icon tint color
+        imageView.setColorFilter(textColor, PorterDuff.Mode.SRC_IN);
+        // Set the text color
+        textView.setTextColor(textColor);
 
         Toast toast = new Toast(context);
         toast.setGravity(Gravity.BOTTOM, 0, 100);
@@ -63,8 +95,6 @@ public class Utilities {
         toast.setView(layout);
         toast.show();
     }
-
-    // Additional utility methods...
 
     /**
      * Checks if a string is a valid email address.

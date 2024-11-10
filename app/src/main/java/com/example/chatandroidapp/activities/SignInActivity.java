@@ -65,7 +65,7 @@ public class SignInActivity extends AppCompatActivity {
      * Authenticates the user with the provided email and password.
      */
     private void signIn() {
-        setLoading(true);
+        showLoadingIndicator(true);
         Utilities.showToast(this, "Authenticating...", ToastType.INFO);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
 
@@ -75,9 +75,8 @@ public class SignInActivity extends AppCompatActivity {
                 .whereEqualTo(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString().trim())
                 .get()
                 .addOnCompleteListener(task -> {
-                    setLoading(false);
                     if (task.isSuccessful() && task.getResult() != null && !task.getResult().getDocuments().isEmpty()) {
-                        Utilities.showToast(this, "Authentication successful.", ToastType.INFO);
+                        Utilities.showToast(this, "Authentication successful.", ToastType.SUCCESS);
                         // If authentication is successful, save user details in preferences and navigate to MainActivity
                         DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
                         preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
@@ -92,9 +91,9 @@ public class SignInActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(exception -> {
-                    setLoading(false);
                     Utilities.showToast(this, exception.getMessage(), ToastType.DANGER);
                 });
+        showLoadingIndicator(false);
     }
 
     /**
@@ -123,7 +122,7 @@ public class SignInActivity extends AppCompatActivity {
      *
      * @param isLoading true to show loading, false to hide loading.
      */
-    private void setLoading(boolean isLoading) {
+    private void showLoadingIndicator(boolean isLoading) {
         if (isLoading) {
             binding.buttonSignIn.setVisibility(View.INVISIBLE);
             binding.textCreateNewAccount.setVisibility(View.INVISIBLE);

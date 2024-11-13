@@ -47,4 +47,7 @@ public class Constants {
      * Key for the user's profile image.
      */
     public static final String KEY_IMAGE = "image";
+
+
+    public static final String KEY_FCM_TOKEN = "fcmToken";
 }

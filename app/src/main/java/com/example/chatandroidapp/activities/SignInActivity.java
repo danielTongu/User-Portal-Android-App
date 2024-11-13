@@ -14,8 +14,6 @@ import com.example.chatandroidapp.utilities.Utilities; // Import Utilities class
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-
 /**
  * SignInActivity handles the user sign-in functionality for the chat application.
  *
@@ -87,11 +85,11 @@ public class SignInActivity extends AppCompatActivity {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     } else {
-                        Utilities.showToast(this, "Unable to sign in", ToastType.DANGER);
+                        Utilities.showToast(this, "Unable to sign in", ToastType.ERROR);
                     }
                 })
                 .addOnFailureListener(exception -> {
-                    Utilities.showToast(this, exception.getMessage(), ToastType.DANGER);
+                    Utilities.showToast(this, exception.getMessage(), ToastType.ERROR);
                 });
         showLoadingIndicator(false);
     }

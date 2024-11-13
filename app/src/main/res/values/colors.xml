@@ -11,9 +11,9 @@
     <color name="received_message_background">#090D16</color>
 
     <!-- custom toast colors -->
-    <color name="error">#FF5241</color>
-    <color name="warning">#F9E960</color>
-    <color name="success">#67AD5B</color>
-    <color name="info">#4994EC</color>
+    <color name="error">#EC7063</color>
+    <color name="warning">#F4D03F</color>
+    <color name="success">#138D75</color>
+    <color name="info">#2980B9</color>
 
 </resources>

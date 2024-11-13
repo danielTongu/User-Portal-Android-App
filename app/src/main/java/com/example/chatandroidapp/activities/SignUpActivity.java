@@ -18,7 +18,6 @@ import com.example.chatandroidapp.utilities.PreferenceManager;
 import com.example.chatandroidapp.utilities.ToastType;
 import com.example.chatandroidapp.utilities.Utilities; // Import Utilities class
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -30,15 +29,9 @@ import java.util.HashMap;
  * @author Daniel Tongu
  */
 public class SignUpActivity extends AppCompatActivity {
-
-    // View binding for activity_signup.xml
-    private ActivitySignupBinding binding;
-
-    // Encoded image string for the user's profile picture
-    private String encodedImage;
-
-    // PreferenceManager to manage shared preferences
-    private PreferenceManager preferenceManager;
+    private ActivitySignupBinding binding; // View binding for activity_signup.xml
+    private String encodedImage; // Encoded image string for the user's profile picture
+    private PreferenceManager preferenceManager; // PreferenceManager to manage shared preferences
 
     /**
      * Called when the activity is starting. Initializes the activity components.
@@ -102,7 +95,7 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(exception -> {
-                    Utilities.showToast(this, exception.getMessage(), ToastType.DANGER);
+                    Utilities.showToast(this, exception.getMessage(), ToastType.ERROR);
                 });
         showLoadingIndicator(false);
     }
@@ -114,7 +107,6 @@ public class SignUpActivity extends AppCompatActivity {
         FirebaseFirestore database = FirebaseFirestore.getInstance();
 
         // Create a HashMap to store user data
-        Utilities.showToast(this, "Registering...", ToastType.INFO);
         HashMap<String, Object> user = new HashMap<>();
         user.put(Constants.KEY_NAME, binding.inputName.getText().toString().trim());
         user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString().trim());
@@ -125,7 +117,7 @@ public class SignUpActivity extends AppCompatActivity {
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
-                    Utilities.showToast(this, "Registration successful", ToastType.SUCCESS);
+                    Utilities.showToast(this, "Onboarding successful", ToastType.SUCCESS);
 
                     // Save user info in preferences
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
@@ -140,7 +132,7 @@ public class SignUpActivity extends AppCompatActivity {
                     startActivity(intent);
                 })
                 .addOnFailureListener(exception -> {
-                    Utilities.showToast(this, exception.getMessage(), ToastType.DANGER);
+                    Utilities.showToast(this, exception.getMessage(), ToastType.ERROR);
                 });
         showLoadingIndicator(false);
     }
@@ -169,7 +161,7 @@ public class SignUpActivity extends AppCompatActivity {
                         encodedImage = Utilities.encodeImage(bitmap);
 
                     } catch (FileNotFoundException e) {
-                        Utilities.showToast(this, "Image not found", ToastType.DANGER);
+                        Utilities.showToast(this, "Image not found", ToastType.ERROR);
                         e.printStackTrace();
                     }
                 }

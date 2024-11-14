@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
      * Currently, it sets a click listener on the sign-out image to trigger the signOut process.
      */
     private void setUpListeners() {
-        binding.imageSignOut.setOnClickListener(v -> signOut());
+        binding.imageSignOut.setOnClickListener(v -> signOut()); 
+        binding.fabNewChat.setOnClickListener(v -> startActivity(new Intent( getApplicationContext(), UserActivity.class)));
     }
 
     /**
